@@ -1,0 +1,48 @@
+{
+  "_comment": "Custom Egg by RexxHayanasi dengan full Bash access - pakai yolks base image",
+  "meta": {
+    "version": "PTDL_v2",
+    "update_url": null
+  },
+  "exported_at": "2025-07-25T00:00:00+00:00",
+  "name": "EGG PM2 RexxHayanasi",
+  "author": "RexxHayanasi",
+  "description": "Node.js Egg dengan full Bash startup. Cocok untuk PM2, Bash, Node, dll.",
+  "features": null,
+  "docker_images": {
+    "Node.js 24": "ghcr.io/parkervcp/yolks:nodejs_24",
+    "Node.js 22": "ghcr.io/parkervcp/yolks:nodejs_22",
+    "Node.js 20": "ghcr.io/parkervcp/yolks:nodejs_20",
+    "Node.js 18": "ghcr.io/parkervcp/yolks:nodejs_18",
+    "Node.js 16": "ghcr.io/parkervcp/yolks:nodejs_16",
+    "Node.js 14": "ghcr.io/parkervcp/yolks:nodejs_14"
+  },
+  "file_denylist": [],
+  "startup": "{{CMD_RUN}}",
+  "config": {
+    "files": "{}",
+    "startup": "{\r\n    \"done\": \"Egg started with your custom command.\"\r\n}",
+    "logs": "{}",
+    "stop": "^C"
+  },
+  "scripts": {
+    "installation": {
+      "script": "#!/bin/bash\nmkdir -p /mnt/server\ncd /mnt/server\necho \"Upload atau clone file kamu secara manual. Tidak ada auto-install.\"\nexit 0",
+      "container": "node:20-bullseye-slim",
+      "entrypoint": "bash"
+    }
+  },
+  "variables": [
+    {
+      "name": "Startup Command",
+      "description": "Masukkan command startup bebas, contoh: bash, bash start.sh, pm2 start bot.js",
+      "env_variable": "CMD_RUN",
+      "default_value": "bash",
+      "user_viewable": true,
+      "user_editable": true,
+      "required": true,
+      "rules": "required|string",
+      "field_type": "text"
+    }
+  ]
+}
